@@ -38,7 +38,7 @@ public class ARealClock {
         final AtomicBoolean fireCollision = new AtomicBoolean(false);
 
         clock.register(() -> {
-            if(processingFire.getAndSet(true)){
+            if (processingFire.getAndSet(true)) {
                 // Fail we were already processing the last fire
                 fireCollision.set(true);
             }
