@@ -9,6 +9,8 @@ public abstract class Clock {
     private final Set<Listener> listeners = Collections.synchronizedSet(new HashSet<>());
 
     public void register(final Clock.Listener listener) {
+        if(listener == null) return;
+
         listeners.add(listener);
     }
 
