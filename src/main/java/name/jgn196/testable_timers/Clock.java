@@ -1,16 +1,30 @@
 package name.jgn196.testable_timers;
 
-public interface Clock {
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
-    void register(Listener listener);
+public abstract class Clock {
 
-    void unregister(Listener listener);
+    private final Set<Listener> listeners = Collections.synchronizedSet(new HashSet<>());
 
-    void start();
+    public void register(final Clock.Listener listener) {
+        listeners.add(listener);
+    }
 
-    void stop();
+    public void unregister(final Listener listener) {
+        listeners.remove(listener);
+    }
 
-    interface Listener {
+    protected void reportTimeElapsed() {
+        listeners.forEach(Listener::tick);
+    }
+
+    public abstract void start();
+
+    public abstract void stop();
+
+    public interface Listener {
         void tick();
     }
 }

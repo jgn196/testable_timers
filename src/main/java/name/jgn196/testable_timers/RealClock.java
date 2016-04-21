@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-class RealClock extends ClockBase {
+class RealClock extends Clock {
 
     private final long period;
     private final TimeUnit periodTimeUnit;

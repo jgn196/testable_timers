@@ -1,6 +1,6 @@
 package name.jgn196.testable_timers;
 
-class TestClock extends ClockBase {
+class TestClock extends Clock {
 
     @Override
     public void start() {
