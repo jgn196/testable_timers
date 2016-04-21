@@ -12,7 +12,8 @@ class TestClock extends Clock {
         // Ignored
     }
 
-    public void triggerTimer() {
-        reportTimeElapsed();
+    @Override
+    public void tick() {
+        super.tick();
     }
 }

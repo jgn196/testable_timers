@@ -14,10 +14,10 @@ public class ATestClock {
         final Clock.Listener listener = () -> ticksHeard.getAndAdd(1);
 
         clock.register(listener);
-        clock.triggerTimer();
+        clock.tick();
 
         clock.unregister(listener);
-        clock.triggerTimer();
+        clock.tick();
 
         Assert.assertEquals(1, ticksHeard.get());
     }

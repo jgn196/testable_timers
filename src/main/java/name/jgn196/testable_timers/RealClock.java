@@ -18,7 +18,7 @@ class RealClock extends Clock {
 
     @Override
     public void start() {
-        timerService.scheduleAtFixedRate(this::reportTimeElapsed, period, period, periodTimeUnit);
+        timerService.scheduleAtFixedRate(this::tick, period, period, periodTimeUnit);
     }
 
     @Override

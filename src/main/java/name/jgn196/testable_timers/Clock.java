@@ -16,7 +16,7 @@ public abstract class Clock {
         listeners.remove(listener);
     }
 
-    protected void reportTimeElapsed() {
+    protected void tick() {
         listeners.forEach(Listener::tick);
     }
 
