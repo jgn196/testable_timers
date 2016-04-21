@@ -4,6 +4,8 @@ public interface Clock {
 
     void register(Listener listener);
 
+    void unregister(Listener listener);
+
     void start();
 
     void stop();

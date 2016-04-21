@@ -13,6 +13,11 @@ abstract class ClockBase implements Clock {
         listeners.add(listener);
     }
 
+    @Override
+    public void unregister(final Listener listener) {
+        listeners.remove(listener);
+    }
+
     protected void reportTimeElapsed() {
         listeners.forEach(Listener::timeElapsed);
     }

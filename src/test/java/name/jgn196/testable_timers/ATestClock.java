@@ -16,6 +16,9 @@ public class ATestClock {
         clock.register(listener);
         clock.triggerTimer();
 
+        clock.unregister(listener);
+        clock.triggerTimer();
+
         Assert.assertEquals(1, ticksHeard.get());
     }
 }
