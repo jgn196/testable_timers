@@ -19,6 +19,6 @@ abstract class ClockBase implements Clock {
     }
 
     protected void reportTimeElapsed() {
-        listeners.forEach(Listener::timeElapsed);
+        listeners.forEach(Listener::tick);
     }
 }

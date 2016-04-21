@@ -11,6 +11,6 @@ public interface Clock {
     void stop();
 
     interface Listener {
-        void timeElapsed();
+        void tick();
     }
 }
