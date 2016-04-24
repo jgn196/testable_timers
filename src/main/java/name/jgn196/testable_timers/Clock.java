@@ -3,10 +3,15 @@ package name.jgn196.testable_timers;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public abstract class Clock {
 
     private final Set<Listener> listeners = Collections.synchronizedSet(new HashSet<>());
+
+    public static Clock withTickPeriod(long tickPeriod, TimeUnit periodTimeUnit) {
+        return new RealClock(tickPeriod, periodTimeUnit);
+    }
 
     public void register(final Clock.Listener listener) {
         if (listener == null) return;
