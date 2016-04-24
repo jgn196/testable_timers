@@ -9,7 +9,7 @@ public abstract class Clock {
     private final Set<Listener> listeners = Collections.synchronizedSet(new HashSet<>());
 
     public void register(final Clock.Listener listener) {
-        if(listener == null) return;
+        if (listener == null) return;
 
         listeners.add(listener);
     }
@@ -19,7 +19,15 @@ public abstract class Clock {
     }
 
     protected void tick() {
-        listeners.forEach(Listener::tick);
+        listeners.forEach(this::safeTick);
+    }
+
+    private void safeTick(final Listener listener) {
+        try {
+            listener.tick();
+        } catch (final RuntimeException error) {
+            // Do nothing
+        }
     }
 
     public abstract void start();
