@@ -20,7 +20,7 @@ public class RealClockExample {
             latch.countDown();
         });
         clock.start();
-        
+
         latch.await();
         clock.stop();
     }
