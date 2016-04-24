@@ -12,6 +12,9 @@ class RealClock extends Clock {
     private final ScheduledExecutorService timerService = Executors.newSingleThreadScheduledExecutor();
 
     public RealClock(final long tickPeriod, final TimeUnit periodTimeUnit) {
+        if(tickPeriod <= 0) throw new IllegalArgumentException("Illegal tick period: " + tickPeriod);
+        if(periodTimeUnit == null) throw new IllegalArgumentException("Period time unit is null");
+
         this.tickPeriod = tickPeriod;
         this.periodTimeUnit = periodTimeUnit;
     }

@@ -7,6 +7,8 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 public class ARealClock {
     public static final int PERIOD = 100;
     public static final int TIMER_FIRE_COUNT = 5;
@@ -56,5 +58,15 @@ public class ARealClock {
         clock.stop();
 
         Assert.assertFalse(fireCollision.get());
+    }
+
+    @Test
+    public void rejectsIllegalConstructionArguments() {
+        assertThatThrownBy(() -> new RealClock(-100, TimeUnit.MILLISECONDS))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("tick period");
+        assertThatThrownBy(() -> new RealClock(100, null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("time unit");
     }
 }

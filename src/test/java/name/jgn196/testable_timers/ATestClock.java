@@ -48,6 +48,14 @@ public class ATestClock {
     }
 
     @Test
+    public void ignoresUnregisteringUnknownListeners() {
+        final TestClock clock = new TestClock();
+
+        clock.unregister(null);
+        clock.unregister(() -> {});
+    }
+
+    @Test
     public void isRobustToListenerExceptions() {
         final TestClock clock = new TestClock();
         final Clock.Listener failingListener = () -> {
