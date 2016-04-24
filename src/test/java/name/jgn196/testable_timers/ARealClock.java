@@ -3,7 +3,6 @@ package name.jgn196.testable_timers;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -14,7 +13,7 @@ public class ARealClock {
     public static final int EXPECTED_DURATION = 100 * 5;
 
     @Test
-    public void notifiesRegisteredListenersPeriodically() throws BrokenBarrierException, InterruptedException {
+    public void sendsTicksToRegisteredListenersPeriodically() throws InterruptedException {
         final Clock clock = new RealClock(PERIOD, TimeUnit.MILLISECONDS);
         final CountDownLatch latch = new CountDownLatch(TIMER_FIRE_COUNT);
         final long startTicks = System.currentTimeMillis();

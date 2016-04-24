@@ -6,19 +6,19 @@ import java.util.concurrent.TimeUnit;
 
 class RealClock extends Clock {
 
-    private final long period;
+    private final long tickPeriod;
     private final TimeUnit periodTimeUnit;
 
     private final ScheduledExecutorService timerService = Executors.newSingleThreadScheduledExecutor();
 
-    public RealClock(final long period, final TimeUnit timeUnit) {
-        this.period = period;
-        this.periodTimeUnit = timeUnit;
+    public RealClock(final long tickPeriod, final TimeUnit periodTimeUnit) {
+        this.tickPeriod = tickPeriod;
+        this.periodTimeUnit = periodTimeUnit;
     }
 
     @Override
     public void start() {
-        timerService.scheduleAtFixedRate(this::tick, period, period, periodTimeUnit);
+        timerService.scheduleAtFixedRate(this::tick, tickPeriod, tickPeriod, periodTimeUnit);
     }
 
     @Override
